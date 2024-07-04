@@ -16,7 +16,6 @@ class DataBaseManager {
     
     func addUser(_ user: UserModel) {
         let contactEntity = ContactEntity(context: context) //Contact is the Entity name what we create
-        contactEntity.id = user.id
         contactEntity.contactNumber = user.contact
         contactEntity.firstName = user.firstName
         contactEntity.lastName = user.lastName

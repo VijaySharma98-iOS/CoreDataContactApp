@@ -19,11 +19,25 @@ class SaveContactVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        backBtn()
     }
     
     @IBAction func saveContactBtn(_ sender: UIButton) {
         if saveUser() {
             clearTextFields()
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    func backBtn(){
+        let backButtonImg = UIButton()
+        backButtonImg.setImage(UIImage(named: "ic_blackBackArrow"), for: .normal)
+        backButtonImg.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside) // Back Btn Action
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView:backButtonImg)
+    }
+    @objc func backBtnTapped(_ sender: UIBarButtonItem) {
+        if self.navigationController?.viewControllers.count == 1 {
+            dismiss(animated: true, completion: nil)
+        } else {
             navigationController?.popViewController(animated: true)
         }
     }
@@ -45,8 +59,7 @@ class SaveContactVC: UIViewController {
                       message: "Please Enter First Name")
             return false
         }
-        dataBaseManager.addUser(UserModel(id: "",
-                                          contact: contactNumber,
+        dataBaseManager.addUser(UserModel(contact: contactNumber,
                                           firstName: firstName,
                                           lastName: lastName))
         return true

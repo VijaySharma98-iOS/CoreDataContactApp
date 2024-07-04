@@ -18,6 +18,7 @@ class ContactListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        navigationItem.title = "Contact List"
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
