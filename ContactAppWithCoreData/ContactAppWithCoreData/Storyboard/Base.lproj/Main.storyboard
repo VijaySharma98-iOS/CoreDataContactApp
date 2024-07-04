@@ -18,10 +18,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ot4-aH-kFp">
-                                <rect key="frame" x="20" y="123" width="353" height="326"/>
+                                <rect key="frame" x="20" y="123" width="353" height="456"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mL-Bo-uoe">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="120"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Lsu-3L-Q7e">
+                                                <rect key="frame" x="126.66666666666666" y="11" width="100" height="98.666666666666671"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="ooN-by-IHh"/>
+                                                    <constraint firstAttribute="height" constant="100" id="xO0-qb-3dP"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Lsu-3L-Q7e" firstAttribute="centerY" secondItem="7mL-Bo-uoe" secondAttribute="centerY" id="1J9-uD-vio"/>
+                                            <constraint firstItem="Lsu-3L-Q7e" firstAttribute="top" secondItem="7mL-Bo-uoe" secondAttribute="top" constant="10" id="6s8-6r-Zdb"/>
+                                            <constraint firstItem="Lsu-3L-Q7e" firstAttribute="centerX" secondItem="7mL-Bo-uoe" secondAttribute="centerX" id="jwC-8D-Mof"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="I8y-6N-1uM">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="62"/>
+                                        <rect key="frame" x="0.0" y="130" width="353" height="62"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dco-53-o0V">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="18"/>
@@ -37,7 +56,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="j1d-rU-bJ6">
-                                        <rect key="frame" x="0.0" y="72" width="353" height="62"/>
+                                        <rect key="frame" x="0.0" y="202" width="353" height="62"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgW-eM-N7v">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="18"/>
@@ -53,7 +72,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ihW-pC-wnz">
-                                        <rect key="frame" x="0.0" y="144" width="353" height="62"/>
+                                        <rect key="frame" x="0.0" y="274" width="353" height="62"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contect Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buz-1w-bg1">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="18"/>
@@ -69,13 +88,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6sN-5f-Zwf">
-                                        <rect key="frame" x="0.0" y="216" width="353" height="50"/>
+                                        <rect key="frame" x="0.0" y="346" width="353" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="vFz-50-a5k"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ySC-aS-ZFu">
-                                        <rect key="frame" x="0.0" y="276" width="353" height="50"/>
+                                        <rect key="frame" x="0.0" y="406" width="353" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zs1-bk-hFq">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -112,6 +131,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Save Contact" id="6RF-Pz-57X"/>
                     <connections>
+                        <outlet property="contactImageView" destination="Lsu-3L-Q7e" id="LvW-RC-KKc"/>
                         <outlet property="contactTxtFld" destination="iG1-XO-xgy" id="Vh7-Re-TYR"/>
                         <outlet property="firstNameTxtFld" destination="oCS-nq-kMa" id="J6F-CT-kk7"/>
                         <outlet property="lastNameTxtFld" destination="xZB-o3-mCW" id="Ewq-hF-HUy"/>
@@ -129,21 +149,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-C0-65a">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="g4O-C0-65a">
+                                <rect key="frame" x="0.0" y="153" width="393" height="665"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="JqG-Xs-TPr" id="TXp-lA-8mT"/>
                                     <outlet property="delegate" destination="JqG-Xs-TPr" id="y3i-QF-b4z"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bOx-7g-9nu">
+                                <rect key="frame" x="0.0" y="103" width="393" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9EO-jM-JRK"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="JqG-Xs-TPr" id="ZD2-Iw-rIC"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aFM-CQ-lCy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="g4O-C0-65a" firstAttribute="leading" secondItem="aFM-CQ-lCy" secondAttribute="leading" id="15Y-GM-6Zn"/>
+                            <constraint firstItem="g4O-C0-65a" firstAttribute="top" secondItem="bOx-7g-9nu" secondAttribute="bottom" id="5cU-xO-X8b"/>
+                            <constraint firstItem="bOx-7g-9nu" firstAttribute="top" secondItem="aFM-CQ-lCy" secondAttribute="top" id="8y2-8v-NBA"/>
+                            <constraint firstItem="bOx-7g-9nu" firstAttribute="trailing" secondItem="aFM-CQ-lCy" secondAttribute="trailing" id="evb-8N-q0e"/>
                             <constraint firstItem="aFM-CQ-lCy" firstAttribute="bottom" secondItem="g4O-C0-65a" secondAttribute="bottom" id="fZv-RN-Gbd"/>
-                            <constraint firstItem="g4O-C0-65a" firstAttribute="top" secondItem="aFM-CQ-lCy" secondAttribute="top" id="u5z-f9-eWG"/>
+                            <constraint firstItem="bOx-7g-9nu" firstAttribute="leading" secondItem="aFM-CQ-lCy" secondAttribute="leading" id="kWf-Nz-RDJ"/>
                             <constraint firstItem="aFM-CQ-lCy" firstAttribute="trailing" secondItem="g4O-C0-65a" secondAttribute="trailing" id="wAZ-kG-YPU"/>
                         </constraints>
                     </view>
@@ -157,12 +191,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contactListTblView" destination="g4O-C0-65a" id="0s9-yO-EaN"/>
+                        <outlet property="searchBar" destination="bOx-7g-9nu" id="C2J-J4-xYE"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="saveNewContactSegue" id="gt4-sh-d7D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ozc-gI-eiq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320" y="-27"/>
+            <point key="canvasLocation" x="319.84732824427482" y="-27.464788732394368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Nl-qh-dqA">
@@ -272,6 +307,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -10,15 +10,22 @@ import UIKit
 class ContactListViewController: UIViewController {
     
     private var userContact: [ContactEntity] = []
+    private var filterUserContact: [ContactEntity] = []
     private let dataBaseManager = DataBaseManager()
     private let contactCellIdentifier = "ContactCell"
+    private var isSearching: Bool = false
     
+        
     @IBOutlet weak var contactListTblView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         navigationItem.title = "Contact List"
+        searchBar.delegate = self
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,18 +43,47 @@ class ContactListViewController: UIViewController {
         contactListTblView.delegate = self
         contactListTblView.dataSource = self
     }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        contactListTblView.reloadData()
+        searchBar.resignFirstResponder()
+    }
 }
 extension ContactListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userContact.count
+        return isSearching ? filterUserContact.count : userContact.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let contactListCell = tableView.dequeueReusableCell(withIdentifier: contactCellIdentifier, for: indexPath) as? ContactListTableViewCell else {
             return UITableViewCell()
         }
-        contactListCell.userContact = userContact[indexPath.row]
+        let contact = isSearching ? filterUserContact[indexPath.row] : userContact[indexPath.row]
+        contactListCell.userContact = contact
         
         return contactListCell
     }
+    
+}
+extension ContactListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        guard !searchText.isEmpty else {
+            isSearching = false
+            filterUserContact.removeAll()
+            contactListTblView.reloadData()
+            return
+        }
+        
+        isSearching = true
+        
+        filterUserContact = userContact.filter({ contact in
+            let fullName = "\(contact.firstName ?? "") \(contact.lastName ?? "")"
+            
+            return fullName.lowercased().contains(searchText.lowercased())
+        })
+        contactListTblView.reloadData()
+    }
+    
 }

@@ -19,6 +19,7 @@ class DataBaseManager {
         contactEntity.contactNumber = user.contact
         contactEntity.firstName = user.firstName
         contactEntity.lastName = user.lastName
+        contactEntity.imageName = user.imageName
         
         do {
             try context.save()

@@ -11,6 +11,8 @@ class ContactListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var contactNumberLbl: UILabel!
+    @IBOutlet weak var contactImageView: UIImageView!
+    
     
     var userContact: ContactEntity? {
         didSet {
@@ -30,8 +32,16 @@ class ContactListTableViewCell: UITableViewCell {
     }
     func setUserData() {
         guard let userContact else { return }
-        nameLbl.text = "\(userContact.firstName ?? "")\(userContact.lastName ?? "")"
+        
+        let fullName = "\(userContact.firstName ?? "") \(userContact.lastName ?? "")"
+        nameLbl.text = fullName
         contactNumberLbl.text = userContact.contactNumber
+        
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documents.appendingPathComponent(userContact.imageName ?? "",conformingTo: .png)
+        
+        contactImageView.image = UIImage(contentsOfFile: fileURL.path())
+        //print(fileURL.pathComponents)
         
     }
 }
