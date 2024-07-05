@@ -11,5 +11,5 @@ struct UserModel {
     let contact: String
     let firstName: String
     let lastName: String
-    let imageName: String
+    var imageName: String
 }

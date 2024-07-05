@@ -37,8 +37,8 @@ class ContactListTableViewCell: UITableViewCell {
         nameLbl.text = fullName
         contactNumberLbl.text = userContact.contactNumber
         
-        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documents.appendingPathComponent(userContact.imageName ?? "",conformingTo: .png)
+        //Get the image from the documentDirectory
+        let fileURL = FileManager.default.getDocumentDirectoryFileURL(for: userContact.imageName ?? "", withExtension: "png") // Create the path of image with .png type
         
         contactImageView.image = UIImage(contentsOfFile: fileURL.path())
         //print(fileURL.pathComponents)

@@ -14,9 +14,12 @@ class SaveContactVC: UIViewController {
     @IBOutlet weak var lastNameTxtFld: UITextField!
     @IBOutlet weak var contactTxtFld: UITextField!
     @IBOutlet weak var contactImageView: UIImageView!
+    @IBOutlet weak var IBSaveContactBtn: UIButton!
     
     private let dataBaseManager = DataBaseManager()
     private var imageSelectedByUser: Bool = false
+    
+    var userContactDetail: ContactEntity?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,16 +41,62 @@ extension SaveContactVC {
 extension SaveContactVC {
     
     private func configuration()  {
-        backBtn()
-        addGesture()
-        contactImageView.layer.cornerRadius = 50
+        setupBackButton()
+        addGestureRecognizers()
+        configureContactImageView()
+        updateUIWithUserDetails()
     }
     
-    
-    private func addGesture()  {
+    private func addGestureRecognizers()  {
         let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(SaveContactVC.openGallery))
         contactImageView.addGestureRecognizer(imageTapGesture)
     }
+    //Date:: 05, Jul 2024
+    private func configureContactImageView() {
+        contactImageView.layer.cornerRadius = 50
+        contactImageView.clipsToBounds = true // To ensure the corners are actually rounded
+    }
+    
+    private func updateUIWithUserDetails() {
+        guard let userDetail = userContactDetail else {
+            return
+        }
+        print(userDetail)
+        IBSaveContactBtn.setTitle("Update Contact", for: .normal)
+        navigationItem.title = "Update Contact"
+        
+        firstNameTxtFld.text = userDetail.firstName
+        lastNameTxtFld.text = userDetail.lastName
+        contactTxtFld.text = userDetail.contactNumber
+        
+        
+//        let fileURL = getImageURL(imageName: userDetail.imageName ?? "")
+//        
+//        contactImageView.image = UIImage(contentsOfFile: fileURL.path())
+//        
+//        imageSelectedByUser = true
+        
+        if let imageName = userDetail.imageName {
+            let fileURL = getImageURL(imageName: imageName)
+           
+                if let image = UIImage(contentsOfFile: fileURL.path()) {
+                    contactImageView.image = image
+                } else {
+                    contactImageView.image = UIImage(systemName: "person.circle.fill")
+                }
+        } else {
+            contactImageView.image = UIImage(systemName: "person.circle.fill")
+        }
+        imageSelectedByUser = true
+        
+    }
+    
+    private func getImageURL(imageName: String) -> URL {
+        let fileURL = FileManager.default.getDocumentDirectoryFileURL(for: imageName, withExtension: "png") // Create the path of image with .png type
+        return fileURL
+    }
+    //End
+    
     @objc private func openGallery() {
         var config = PHPickerConfiguration()
         config.selectionLimit = 1
@@ -73,23 +122,38 @@ extension SaveContactVC {
                       message: "Please Enter First Name")
             return false
         }
-        let imageName = UUID().uuidString
         
+        let imageName = UUID().uuidString
         if !imageSelectedByUser {
             showAlert(alert: "Alert", message: "Please choose you profile Pic ")
+            return false
         }
         
-        saveImageInDocumentDirectory(imageName: imageName)
-        dataBaseManager.addUser(UserModel(contact: contactNumber,
-                                          firstName: firstName,
-                                          lastName: lastName,
-                                          imageName: imageName))
+        var newContact = UserModel(contact: contactNumber,
+                                   firstName: firstName,
+                                   lastName: lastName,
+                                   imageName: imageName)
+        
+        if let userDetail = userContactDetail {
+            
+            newContact.imageName = userDetail.imageName ?? ""
+            
+            
+            saveImageInDocumentDirectory(imageName: userDetail.imageName ?? "")
+            dataBaseManager.updateUserContact(contact: newContact, contactEntity: userDetail)
+            
+        } else {
+            
+            saveImageInDocumentDirectory(imageName: imageName)
+            dataBaseManager.addUserContact(newContact)
+        }
+        
         return true
     }
     
     private func saveImageInDocumentDirectory(imageName: String) {
-        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documents.appendingPathComponent(imageName).appendingPathExtension("png")
+        
+        let fileURL = FileManager.default.getDocumentDirectoryFileURL(for: imageName, withExtension: "png")
         
         guard let imageData = contactImageView.image?.pngData() else {
             print("Error: Could not convert image to PNG data.")
@@ -116,7 +180,7 @@ extension SaveContactVC {
         present(alert, animated: true)
     }
     
-    private func backBtn(){
+    private func setupBackButton(){
         let backButtonImg = UIButton()
         backButtonImg.setImage(UIImage(named: "ic_blackBackArrow"), for: .normal)
         backButtonImg.addTarget(self, action: #selector(backBtnTapped), for: .touchUpInside) // Back Btn Action

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		213592CA2C38069D00A0EA19 /* Ext-FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213592C92C38069D00A0EA19 /* Ext-FileManager.swift */; };
 		21577AC72C35225A004EFFD6 /* DataBaseManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21577AC62C35225A004EFFD6 /* DataBaseManger.swift */; };
 		21577AD32C352D75004EFFD6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21577AD22C352D75004EFFD6 /* UserModel.swift */; };
 		21577AD52C352E46004EFFD6 /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21577AD42C352E46004EFFD6 /* ContactListViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		213592C92C38069D00A0EA19 /* Ext-FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-FileManager.swift"; sourceTree = "<group>"; };
 		21577AC62C35225A004EFFD6 /* DataBaseManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManger.swift; sourceTree = "<group>"; };
 		21577AD22C352D75004EFFD6 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		21577AD42C352E46004EFFD6 /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		213592C82C38065C00A0EA19 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				213592C92C38069D00A0EA19 /* Ext-FileManager.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		21577AC82C352C16004EFFD6 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +157,7 @@
 		21B2449A2BFF5070006C53EF /* ContactAppWithCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				213592C82C38065C00A0EA19 /* Helper */,
 				21577AC92C352C2B004EFFD6 /* Application */,
 				21577AC82C352C16004EFFD6 /* Database */,
 				21577ACD2C352CF5004EFFD6 /* Screens */,
@@ -234,6 +245,7 @@
 				21B2449C2BFF5070006C53EF /* AppDelegate.swift in Sources */,
 				21B2449E2BFF5070006C53EF /* SceneDelegate.swift in Sources */,
 				21577AD92C353180004EFFD6 /* ContactListTableViewCell.swift in Sources */,
+				213592CA2C38069D00A0EA19 /* Ext-FileManager.swift in Sources */,
 				21577AD32C352D75004EFFD6 /* UserModel.swift in Sources */,
 				21577AD52C352E46004EFFD6 /* ContactListViewController.swift in Sources */,
 				21B244A62BFF5070006C53EF /* ContactAppWithCoreData.xcdatamodeld in Sources */,

@@ -32,8 +32,14 @@ class ContactListViewController: UIViewController {
         fetchUserContacts()
     }
     @IBAction func addNewContactTapped(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "saveNewContactSegue", sender: nil)
+        gotoSaveContactVC()
     }
+    private func gotoSaveContactVC(userContact: ContactEntity? = nil) {
+        guard let saveContactVC = self.storyboard?.instantiateViewController(withIdentifier: "SaveContactVC") as? SaveContactVC else { return }
+        saveContactVC.userContactDetail = userContact
+        navigationController?.pushViewController(saveContactVC, animated: true)
+    }
+    
     private func fetchUserContacts() {
         userContact = dataBaseManager.fetchUserContact()
         contactListTblView.reloadData()
@@ -64,6 +70,24 @@ extension ContactListViewController: UITableViewDelegate, UITableViewDataSource 
         
         return contactListCell
     }
+    //Date:: 05, Jul 2024 - swipe to delete
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let update = UIContextualAction(style: .normal, title: "Update") { _, _, _ in
+            self.gotoSaveContactVC(userContact: self.userContact[indexPath.row])
+            
+        }
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+            self.dataBaseManager.deleteContact(contactEntity: self.userContact[indexPath.row])
+            self.userContact.remove(at: indexPath.row)
+            self.contactListTblView.reloadData()
+            
+        }
+        
+        update.backgroundColor = .systemIndigo
+        return UISwipeActionsConfiguration(actions: [update, delete])
+    }
+    //End
     
 }
 extension ContactListViewController: UISearchBarDelegate {
